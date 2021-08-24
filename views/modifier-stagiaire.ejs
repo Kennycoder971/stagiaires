@@ -1,0 +1,51 @@
+<%- include('./includes/header.ejs') -%> 
+<%
+    let date = new Date(stagiaire.date_naiss),
+    year = date.getFullYear(),
+    month = date.getMonth()> 10 ? date.getMonth() : `0${date.getMonth()}`,
+    day = date.getDate() > 10 ? date.getDate() : `0${date.getDate()}`
+    date = `${year}-${month}-${day}`
+
+%>
+<form method="POST">
+    <div class="mb-3">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" name="nom" class="form-control" value="<%= stagiaire.nom %> ">
+    </div>
+    <div class="mb-3">
+      <label for="nom">Prénom</label>
+      <input type="text" id="prenom" name="prenom" class="form-control"value="<%= stagiaire.prenom %> " >
+    </div>
+    <div class="mb-3">
+      <label for="nom">Téléphone</label>
+      <input type="tel" id="telephone" name="telephone" class="form-control" value="<%= stagiaire.telephone %> ">
+    </div>
+    <div class="mb-3">
+      <label for="nom">Adresse</label>
+      <input type="text" id="adresse" name="adresse" class="form-control" value="<%= stagiaire.adresse %> ">
+    </div>
+    <div class="mb-3">
+      <label for="nom">Diplôme</label>
+      <input type="text" id="diplome" name="diplome" class="form-control" value="<%= stagiaire.diplome %> ">
+    </div>
+    <div class="mb-3">
+      <label for="nom">Date de naissance</label>
+      <input type="date" required id="date_naiss" name="date_naiss" class="form-control"value="<%= date %>" >
+    </div>
+    <div class="mb-3">
+      <label for="nom">Contrat</label>
+      <input type="checkbox" class="form-check-input" id="contrat" name="contrat" <%= stagiaire.contrat == 1 ? 'checked' : '' %> >
+    </div>
+    <div class="mb-3">
+      <label for="nom">Photo</label>
+      <input type="url" id="photo" name="photo" class="form-control" value="<%= stagiaire.photo %> ">
+    </div>
+    <div class="mb-3">
+      <label for="nom">Description</label>
+     <textarea name="description" id="description" class="form-control" cols="10" rows="10"><%= stagiaire.description %></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+  </form>
+
+  <%- include('./includes/footer.ejs') -%> 

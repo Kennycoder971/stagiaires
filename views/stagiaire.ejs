@@ -1,0 +1,25 @@
+
+<% 
+ let date = new Date(stagiaire.date_naiss)
+              date = date.toLocaleString('fr-FR',{
+                year:'numeric',
+                day:'2-digit',
+                month:'2-digit'
+              })
+%> 
+<%- include('./includes/header.ejs') -%> 
+<h1>Informations sur le stagiaire </h1>
+<div class="d-flex mt-5">
+    <img src="<%= stagiaire.photo %> " class="img-thumbnail "  alt="<%= stagiaire.prenom %>" style="max-width: 300px;">
+    <ul class="ms-5">
+        <li><strong>Nom:</strong> <%= stagiaire.nom %>  </li>
+        <li><strong>Prenom:</strong> <%= stagiaire.prenom %>  </li>
+        <li><strong>Téléphone:</strong> <%= stagiaire.telephone %>  </li>
+        <li><strong>Adresse:</strong> <%= stagiaire.telephone %>  </li>
+        <li><strong>Diplôme:</strong> <%= stagiaire.diplome %>  </li>
+        <li><strong>Date de naissance:</strong> <%= date %>  </li>
+    </ul>
+</div>
+
+<p class="mt-5"><%= stagiaire.description %>  </p>
+<%- include('./includes/footer.ejs') -%> 

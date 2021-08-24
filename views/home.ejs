@@ -1,0 +1,52 @@
+<%- include('./includes/header.ejs') -%> 
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Téléphone</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Diplôme</th>
+        <th scope="col">Date de naissance</th>
+        <th scope="col">Contrat</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% stagiaires.forEach(stagiaire => { %>
+        <tr>
+          <th scope="row"><%= stagiaire.id %> </th>
+          <td> <%= stagiaire.nom %>  </td>
+          <td> <%= stagiaire.prenom %>  </td>
+          <td> <%= stagiaire.telephone %>  </td>
+          <td> <%= stagiaire.adresse %>  </td>
+          <td> <%= stagiaire.diplome %>  </td>
+          <td> 
+            <%
+              let date = new Date(stagiaire.date_naiss)
+              date = date.toLocaleString('fr-FR',{
+                year:'numeric',
+                day:'2-digit',
+                month:'2-digit'
+              })
+             %>
+             <%= date %> 
+          </td>
+          <td> <%= stagiaire.contrat == 1 ? 'Oui': 'Non' %>  </td>
+          <td> <img src="<%= stagiaire.photo %>" alt="<%= stagiaire.nom %>" style="max-width: 150px; object-fit: cover;">  </td>
+          <td> 
+            <form action="/supprimer/<%= stagiaire.id %>" method="POST">
+              <button type="submit" class="btn btn-danger">Supprimer</button>
+            </form>  
+            <a href="/stagiaire/<%= stagiaire.id %> " class="btn btn-primary mt-1">Détails</a>
+            <a href="/modifier-stagiaire/<%= stagiaire.id %> " class="btn btn-warning mt-1">Modifier</a>
+         </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<%- include('./includes/footer.ejs') -%> 
